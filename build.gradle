@@ -58,3 +58,6 @@ shadowJar {
     baseName = 'wsupper'
 }
 
+task stage(dependsOn: ['shadowJar'])
+
+
