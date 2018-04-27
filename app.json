@@ -1,0 +1,6 @@
+{
+  "name": "wsUpperHeroku",
+  "description": "A Ktor app, which do ws by UPPER case",
+  "image": "heroku/java",
+  "addons": [ "heroku-postgresql" ]
+}
