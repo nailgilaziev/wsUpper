@@ -27,19 +27,19 @@ fun Application.main() {
             call.respondText("it's alive", ContentType.Text.Html)
         }
     }
-//    install(WebSockets) {
-//        pingPeriod = Duration.ofSeconds(30) // Disabled (null) by default
-//        timeout = Duration.ofSeconds(15)
-//        maxFrameSize = Long.MAX_VALUE // Disabled (max value). The connection will be closed if surpassed this length.
-//        masking = false
-//    }
-//    routing {
-//        webSocket("/ws") {
-//            incoming.mapNotNull { it as? Frame.Text }.consumeEach { frame ->
-//                val clientSay = frame.readText()
-//                println(clientSay)
-//                outgoing.send(Frame.Text(clientSay.toUpperCase()))
-//            }
-//        }
-//    }
+    install(WebSockets) {
+        pingPeriod = Duration.ofSeconds(30) // Disabled (null) by default
+        timeout = Duration.ofSeconds(15)
+        maxFrameSize = Long.MAX_VALUE // Disabled (max value). The connection will be closed if surpassed this length.
+        masking = false
+    }
+    routing {
+        webSocket("/ws") {
+            incoming.mapNotNull { it as? Frame.Text }.consumeEach { frame ->
+                val clientSay = frame.readText()
+                println(clientSay)
+                outgoing.send(Frame.Text(clientSay.toUpperCase()))
+            }
+        }
+    }
 }
