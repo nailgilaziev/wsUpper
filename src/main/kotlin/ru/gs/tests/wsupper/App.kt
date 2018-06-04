@@ -28,13 +28,14 @@ fun Application.main() {
         }
     }
     install(WebSockets) {
-        pingPeriod = Duration.ofSeconds(30) // Disabled (null) by default
+        pingPeriod = Duration.ofSeconds(60) // Disabled (null) by default
         timeout = Duration.ofSeconds(15)
         maxFrameSize = Long.MAX_VALUE // Disabled (max value). The connection will be closed if surpassed this length.
         masking = false
     }
     routing {
-        webSocket("/ws") {
+        webSocket("/events") {
+            outgoing.send(Frame.Text("<You are connected>"))
             incoming.mapNotNull { it as? Frame.Text }.consumeEach { frame ->
                 val clientSay = frame.readText()
                 println(clientSay)
